@@ -1,0 +1,194 @@
+https://github.com/Shwetha31Anil/171demos
+Recap:
+--------
+Hibernate: ORM 
+
+Features: 
+------------
+1. It reduces development effort
+2. Handle exceptions
+3. Capabality to generate the database 
+4. Database indepnedent
+
+Hibernate:
+---------------------
+1. Configuration
+2. Mapping
+3. Dao classes
+
+1. COnfiguration: xml or java based
+---------------------------
+	hibernate.cfg.xml: classpath
+	<hibenrnate-configuration>
+		<session-factory>
+			<property  name=""> value</property>
+						driver_class
+						url
+						user
+						password
+						dialect
+						hbm2ddl.auto---create,update
+						show_sql
+						format_sql
+					
+					<mapping class="employee.hbm.xml"/>
+	</session-factory>
+	</hibenrnate-configuration>
+2. Mapping:  a)xml or  b)annotation
+a.if you do the mapping in xml we have to add mapping.xml to cfg.xml	
+	employee.hbm.xml---<entity, <id> <property>
+	student.hbm.xml
+	flight.hbm.xml
+b. In the pojo classes will take care of mapping then the pojo classes 
+should add to configuration	
+	@Entity
+	@Table
+		@Id
+		@Column(name="", length=, nullable=flase)
+
+3. Dao
+			Configuration con=new Configuration()
+									.configure(hibernate.cfg.xml)
+									.addAnnotatedClass();
+			SessionFactory sessionFactory=con.buildSessionFactory();
+			
+			Session session=sessionFactory.openSession();---create new session
+			Session session=sessionFactory.getCurrentSession();---it will use the existing session
+			session.beginTransaction();
+			session.save()---save the record to db
+			session.getTransaction().commit();
+			
+			save()----- save the record
+			update()---update the existing record
+			saveOrUpdate()--- save or update
+			delete()---delete the object
+			get()---to returive the object based on primary key
+			
+			get(Employee.class,pk);
+			get(Employee.class, id);
+			get(Employee.class, new String(id));
+			
+			
+			Critiriea----will work with class and variables
+			Query-----will work with entity name---HQL
+			SQLQuery---will work with table name----SQLQuery
+			
+			
+			Critiriea---
+				Criteria cr=session.createCriteria(persistence class);
+				cr.list()---list of objects
+				
+				cr.add(Restrictions.eq("doj",doj));
+				cr.uniqueResult();--return only one object
+-------------------------------------------------------------------------------------			
+	Hibernate provide the mapping for all object oriented principles
+
+		1. is a relationship
+		2. Has a relationship
+		
+	Inheritence:
+			extends
+			
+			
+		Person -----Employee
+					-----Student
+			@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+			---variables of parent and all its childeren plus one extra column to
+				take care of type of object(DTYPE)
+--- for children
+----@DiscriminatorValue(value = "e")
+----------
+Has a relationship:
+-----------------------
+Student has a Address
+
+@OneToOne
+@OneToMany
+@ManyToOne
+@ManyToMany
+
+Unidirectional
+bidirectional
+
+Employee  -----Department
+@ManyToOne
+
+Product----Order   OneToMany Product
+OneToMany---always create a relation ship table
+ManyToOne---it will create fk
+To restrict not to create realation ship table will mention mappedBY
+OneToMany(mappedBy="manytooneobject")
+tables: product, order, order_product
+
+product--productid, prname, cost,qty,order_id
+order--orderid, ordername
+
+select
+        bus0_.bid as bid1_0_0_,
+        bus0_.bname as bname2_0_0_ 
+    from
+        Bus bus0_ 
+    where
+        bus0_.bid=?
+
+
+
+Products------------------Users
+pid	--PK								uid--PK
+pname								uname
+
+	product_users---pid, uid		
+		
+			
+Cascading---On delete cascade--if pk record is deleted automatically all child will delete
+					on delete set null---
+
+Cascade= CascadeType.ALL
+
+if u save child first it will save parent then child will save					
+	State of entity
+	-----------
+	Persist
+	transient
+	detached
+	removed
+	
+	save method will return primary key value
+	persist method doesnot return anything
+	
+	CascadeType--ALL
+						--PERSIST	
+	
+	Hibernate Cache:
+	------------------------
+	1. First Level Cache----- with in the same session---by default
+	2. Second Level Cache------accorss the sessions
+	
+	second level cache not by default:
+	---------------------------------------
+Step1:		1. EhCache---maven dependencies
+		JBossCache
+Step 2:  <property name="hibernate.cache.use_second_level_cache">true</property>
+    <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+Step 3: @Cacheable
+			@Cache(usage=CacheCuncurrencyStrategy.READ_ONLY)
+		
+		
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
