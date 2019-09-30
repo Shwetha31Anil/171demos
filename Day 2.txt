@@ -1,0 +1,211 @@
+Recap:
+---------------
+Testing
+
+Unit Testing---Junit, TestNG
+Integration Testing-- Mocito
+Junit--- 4
+Junit 5---supports for java8
+
+Junit 4:
+---------------
+com.mphasis.frs.bo.test
+class DemoTest{
+
+@Before-----before the each @Test---setUp
+@After----after the each @Test---tearDown
+@BeforeClass---before the any test method--only once for the life cycle of test
+@AfterClass----after the any test method--only once for the life cycle of test
+
+Demo demo=new Demo();
+
+@Test
+public void testMethod1PositiveCases(){
+	demo.method1();---boolean---- assertTrue, assertFalse
+	demo.method1()----String-----assertEquals, assertNotEquals
+											------assertSame, assertNotSame
+							----[]----assertArrayEquals, assertArrayNotEquals
+expected,actual==equal--pass
+actual!=expected---fail							
+}
+@Test(expected=NullPointerException.class)
+public void testMethod1NegetiveCases(){
+}
+
+@Test(timeout=134)
+public void testMethod2(){
+}
+
+
+}
+
+package----com.mphasis.frs.bo	com.mphasis.frs.dao,com.mphasis.frs.servlets
+
+20 class---20test classes---TestSuite---Suite.class
+
+@RunWith(Suite.class)
+@SuiteClasses()
+class AllTests{
+}
+
+Devops: Jenkins---Continuous Integration tool
+
+Respository software--- CVS,SVN,Git
+
+Git--- Checkout, Checkin, Pull,Push, merge,
+
+WebServer---one container
+ApplicationServer---2 container--- web container, ejb container
+	Apache Tomcat
+	JBoss--WildFly
+	OpenShit--RedHat
+	WebLogic-Oracle
+	WebSphere--IBM
+	GlassFish
+	PCF--Pivotal Cloud Foundry
+	
+	Build Tools--build the projects
+		Ant--xml
+	Maven---xml
+	Gradle--json
+	
+	Maven----ojdbc6, servlet-api, jsp-api, junit ,hamerset, mocikto and 4 dep
+
+
+Maven--- Central repo--internet
+			---Local Repo
+			---Project repo
+			
+			groupId---org.servlet
+			artifact-id----servlet-api/ jstl
+			version
+			scope--test/ provided
+			
+			external xsd:
+			---------------
+			<project xmlns:schemaLocation="">
+			</project>
+			
+			
+			<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.1.0</version>
+    <scope>provided</scope>
+</dependency>
+
+DTD
+XSD
+
+<WorldNews>
+<news>
+	<id></id>
+	<name></name>
+	<channel></channel>
+</news>
+<news>
+	<id></id>
+	<name></name>
+	<channel></channel>
+</news>
+</WorldNews>
+
+
+<dependencies>
+	<dependency>
+		<groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+	</dependency>
+</dependencies>
+
+
+settings.xml
+--------------
+
+<?xml version="1.0"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+<proxies>
+<proxy>
+<active>true</active>
+<username>fill  your username here for eg vinay.ingalahalli</username>
+<password>give your system password</password>
+<host>orrproxy.mphasis.com</host>
+<port>8080</port>
+</proxy>
+</proxies>
+<mirrors>
+<mirror>
+<id>UK</id>
+<name>UK Central</name>
+<url>http://uk.maven.org/maven2</url>
+<mirrorOf>central</mirrorOf>
+</mirror>
+</mirrors>
+</settings>
+
+Scopes:   request,page, session, application
+
+http://localhost:8089/mavendemo/delete?id=34
+util---db connection
+Dao---Data Access Objects---interface---implementation class
+Service---BO--Buissness---interface--implementationClass
+Servlet-----
+jsp
+
+
+index.jsp
+
+products---servlet link---products
+addproduct---jsp link
+
+
+
+mvc---view
+
+request---- HttpServletRequest---------${requestScope.rname}
+page----ServletConfig---------${pageScope.rname}
+session--HttpSession---------${sessionScope.rname}
+application----ServletContext---------${applicationScope.rname}
+
+session.setAttribute("sname",value);
+context.setAttribute("productList",productService.getAll());
+
+
+${applicationScope.productList}
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:forEach items="${applicationScope.productList}" var="p">
+${p.pid}----getPid()
+</c:forEach>
+
+for(Product product:productList){
+product.getPid();
+product.getPname();}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,136 @@
+Recap:
+------------
+Maventool--build tool--- ant, maven, gradle
+maven--apache------maven project---settings.xml(for proxy)
+	pom.xml--- dependecies
+					<project--root xsd
+					<groupId----package
+					<artifactId----specfic---projectname
+					<version---
+					<scope---test/provided
+					<packaging-----war/ear/jar/pom
+					
+					<dependecies---<dependecy---groupId, artifactId,version
+					
+					<plugin
+					
+					<properties
+					
+					
+					maven----archetypes----quickstart--console application
+													----web-app---web application
+													
+					catalog.xml--- window--prefrences--maven--archetype--remotecatalog								
+					
+
+Repository or version control systems:
+------------------
+CVS, SVN, Git
+---Git in eclipse--- window---showview----git--gitrepository
+							---clone a repo---get the url from git(authentication)
+--- Checkout--- right click on the projects of cloned repo--Import project
+----checkin---rightclick on project---team--shareproject--git
+					---rightclick on project---- commit---from unstaged to stages--
+						commit and push
+----push or commit---later codes should commit
+----pull--to take the update--- pull command
+
+Coding on Multitier architecture:
+------------------------------------------
+product---add, retrive, delete
+
+interfaces--list of abstract methods
+dao layer----
+
+ORM:Object Realtion Mapper: concept
+----------
+ Diffrent apis or framework:
+ -----------------------------
+ Hibernate
+ Ibatis
+ EclipseLink
+ TopLink
+ 
+ Hibernate:
+ ------------------
+
+Pojo classes------relation(table) 
+  variables--------columns
+ @Entity
+ @Table(name="tProduct")
+class Product{
+}
+
+class name-----Product
+entity name----Product
+table name------tProduct
+
+@Entity
+class Product{														Product
+	@Id
+	private int pid;													pid
+	@Column(name="productName",length=23)
+	private String pname;										productName
+	private int cost;												cost
+
+}
+
+hibernate.cfg.xml----
+---------------------
+		driver
+		url
+		username
+		password
+		dialect---OracleDialect
+				---MySQLDialect
+		
+	---independent of db	
+		
+		save(product);
+		update(product)
+		delete(product)
+		get(Product.class,12);
+		
+		
+		Session---interfaces
+		SessionFactory----
+		Configuration---class to load the hibernate.cfg.xml and load the entities
+
+Hibaernate Library----  Hibernate 4.3.10
+									Hiberanet--dist.jar
+						Maven Project----hibernate dependecy
+
+Hibernate Coding:
+-----------------------
+1. Configuration fo hibernate properties---xml way, java way
+			driver
+			url
+			username
+			password
+			dialect
+			hbm2ddl.auto----- create, update, create-drop
+								create---drop all the entity tables and create tables
+								update--it will not do drop table
+								create-drop:
+			show_sql: true	
+			format_sql: true	
+			
+2. Mapping the classes to relation
+				a. xml way---<entity class="" table="">
+				b. annotation way--- @Entity, @Table, @Id, @Coulmn
+
+3. Dao--- session methods
+4. Hibernate---- Configuration con=new Configuration()
+														.configure()
+														.addAnotatedClass(Product.class)
+														.addAnotatedClass(Shop.class);
+						SessionFactory sessionFactory=con.buildSessionFactory();
+								Session session=sessionFactory.openSession();
+								session.beginTransaction();
+								session.save(object);
+								session.getTransaction().commit();
+								session.close();
+						
+						https://tools.jboss.org/downloads/jbosstools/oxygen/index.html
+
+

@@ -1,0 +1,18 @@
+					PavanMohaPa---true----assertTrue
+					PavanMohan---false-----assertFalse
+					AABBAA--true----assertTrue
+					MNVBMN---true----assertTrue
+					BNMBVCB--false-----assertFalse
+			actual(D) ----expected(R)----pass
+           actual ---!---expected----fail			
+					
+					AAyush----yush
+					Amith----mith
+					MOHAN---MOHAN
+					MANU---MNU
+					
+					
+					
+					
+					
+					
