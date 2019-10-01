@@ -1,0 +1,232 @@
+
+Employee e1=session.get(Employee.class,12);
+e1.getEmployeeId(1)---
+
+Employee e1=session.load(Employee.class,12);
+
+
+update(object)
+public void update(int playerid, int score){
+Player p1=session.get(Player.class,playerid);
+pl.setScore(score);
+update(pl);
+
+}
+
+id
+name
+cost
+qty
+brand
+<id={p.id}>edit
+
+request.gteParameter("id");
+Product p1=productDao.getProductById(pid);
+request.setAttribute("product",p1);
+getRequestDispatcher("add.jsp");
+include(request,response);
+
+<c:set var="p" value="${product}">
+<form action="addProduct">
+<input type="text" name="pid" value="${p.pid}"/>
+
+
+
+if(pid.isEmpty()){
+	productDao.addProduct(product);
+else
+		productDao.updateProduct(product);
+	
+Employee--empid, ename, jcode, deptid,salary,bonus
+Department--deptid,dname,lcode
+Location--lcode, lname
+Job---jcode, jname
+
+
+select deptid from department where dname='production';
+
+select * from employee where deptid= 
+(select deptid from department where dname='production');
+
+dao and entities:
+----------------------------------------------------------------------------------
+Spring Framework:Rod Jhonson: loosely coupled
+------------------------
+IOC principle(Inversion of control), DI--Dependency Injection
+
+EJB--tightly coupled
+
+class Car{
+	private String carModel;
+	private Engine enigine=new PertolEngine();
+	private Wheel wheel=new Wheel();
+}
+
+class Car{
+	private String carModel;
+	private Engine enigine;
+	private Wheel wheel;
+}
+
+Engine e1=new PetrolEngine();
+Wheel  w1=new Wheel();
+Car c1=new Car();
+c1.setWheel(w1);
+c1.setEngine(e1);
+
+
+class Flight{
+		private  Route route=new Route();
+		private Schedule schedule=new Schedule();
+		
+}
+
+Spring Containers: BeanFactory
+								ApplicationContext
+
+ 3 Ways of Spring Configuration:
+ -------------------------------------------
+ 1. Xml way
+ 2. Mixed Ways
+ 3. Java Based
+ 
+ 
+
+Set the parameters for Object--- Setter way, Constructor
+DI--												SI,               CI
+
+Spring Modules:
+--------------------
+Spring Core/IOC-- DI
+Spring DAO--- Spring JDBC, Spring ORM, Spring OXM, Spring tx
+Spring AOP-- Aspect Oriented Programming
+Spring Web MVC--- FCD--DispatcherServlet
+Spring Web MVC REST
+					REST--- Jersey, Jakson
+Spring Security
+
+
+Spring Boot		
+Spring Boot Thymleaf			
+					
+
+Spring Core/IOC-----
+----------------------
+BeanFactory------Lazy, doesnot support internationalization
+ApplicationContext----Eager, support for i18n
+
+
+Spring Core:---
+				1.Core Module
+				2.Beans Module
+				3.Context Module
+				4. SPEL Module
+In Spring every class is a bean to create the object
+Bean class scope is singleton bydefault
+
+scope:  singleton	---always one object	
+			prototype--- for each getBean new object will create
+			request---for each request new object
+			session--- for each session new object
+			
+lazy-init=true ----for making any bean to lazy
+default-lazy-init="true"
+
+Spring Bean Life Cycle:
+---------------------------
+1. <bean class="com.mphasis.training.pojos.Flight" 
+	id="fid"  init-method="init" destroy-method="destroy" autowire="byName">
+	</bean>
+2. <beans  default-init-method="init" default-destroy-method="destroy">
+3. implements InitializingBean, DisposableBean
+4. @PostConstruct   @PreDestroy
+
+2. Mixed Way
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:ctx="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd" >
+         
+      <ctx:annotation-config/>
+      <ctx:component-scan base-package="com.mphasis.training.pojos">
+      </ctx:component-scan>   
+       
+
+</beans>
+
+
+3. Java Based:
+
+@Configuration
+class AppConfig{
+
+@Bean
+public Flight getFlight(){
+  return new Flight();
+}
+
+@Bean
+public Address getAddress(){
+Address a1=new Address();
+a1.setStreet("hgh");
+return a1;
+}
+@Bean
+public EMployee getEmployee(){
+Employee e1=new Employee();
+	e1.setEmpId(123);
+	e1.setAddress(getAddress());
+}
+}
+
+@Component---- @Repository(Dao)
+					------- @Service(Bo class, service)
+					-------@Controller(presentation layer)
+					--------@RestController
+					
+@Configuration
+@ComponentScan
+@Bean
+@Component	
+@Autowired
+@Scope
+@Lazy			
+@Primary
+@Qualifier
+@Required
+	
+@PostConstruct
+@PreDestroy
+
+		
+			
+		Laptop--- String modelNum;
+						Processor  processor;
+						HardDisk hardDisk;
+						String ram;
+
+Processor processor=new MediaTeck();
+
+@Autowired
+Processor processor;
+
+Person; pid, pname, phnum
+Question
+		quiestionid,question
+		List<Answer>
+		Map<Person,Answer>
+Answer
+	ansid
+	answer
+
+
+
+
+
+
+
+
