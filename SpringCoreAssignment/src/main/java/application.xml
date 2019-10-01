@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd" >
+        <!--  default-init-method="init" default-destroy-method="destroy" -->
+
+<bean class="com.mphasis.training.pojos.Answer" id="a1">
+		<constructor-arg value="121"></constructor-arg>
+		<constructor-arg value="MI CI"></constructor-arg>
+	</bean>
+	<bean class="com.mphasis.training.pojos.Answer" id="a2">
+		<constructor-arg value="122"></constructor-arg>
+		<constructor-arg value="SI CI"></constructor-arg>
+	</bean>
+	<bean class="com.mphasis.training.pojos.Answer" id="a3">
+		<constructor-arg value="123"></constructor-arg>
+		<constructor-arg value="MI DA"></constructor-arg>
+	</bean>
+	<bean class="com.mphasis.training.pojos.Answer" id="a4">
+		<constructor-arg value="124"></constructor-arg>
+		<constructor-arg value="AM PM"></constructor-arg>
+	</bean>
+
+
+<bean class="com.mphasis.training.pojos.Person" id="p1">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="VARSHINI"></constructor-arg>
+		<constructor-arg value="67567"></constructor-arg>
+	</bean>
+	<bean class="com.mphasis.training.pojos.Person" id="p2">
+		<constructor-arg value="2"></constructor-arg>
+		<constructor-arg value="Srinivas"></constructor-arg>
+		<constructor-arg value="67567"></constructor-arg>
+	</bean>
+	<bean class="com.mphasis.training.pojos.Person" id="p3">
+		<constructor-arg value="3"></constructor-arg>
+		<constructor-arg value="Sankar"></constructor-arg>
+		<constructor-arg value="67567"></constructor-arg>
+	</bean>
+	
+	<bean class="com.mphasis.training.pojos.Question" id="q1">
+		<constructor-arg value="99"></constructor-arg>
+		<constructor-arg value="What are the two different types of DI?"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="a1"/>
+				<ref bean="a2"/>
+				<ref bean="a3"/>
+				<ref bean="a4"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key-ref="p1" value-ref="a1"></entry>
+				<entry key-ref="p2" value-ref="a2"></entry>
+				<entry key-ref="p3" value-ref="a3"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	
+</beans>
