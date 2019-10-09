@@ -42,7 +42,7 @@ div {
 <body>
 
 <h3>Add Product</h3>
-
+${error}
 <div>
 <c:url var="addAction" value="/add/Product"></c:url>
   <form:form action="${addAction}" method="post" commandName="product">
