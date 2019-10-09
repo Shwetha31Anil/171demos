@@ -129,8 +129,10 @@ public class DemoController {
 		return "addproduct";
 	}
 	
-	@RequestMapping(value="/add/Product",method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute Product p) {
+	@RequestMapping(value="/add/Product",
+			method=RequestMethod.POST)
+	public String addProduct(@ModelAttribute Product p,
+			Model model) {
 		try {
 			if(p.getPid()==0) {
 				System.out.println(p.getPid()+"ading");
@@ -140,10 +142,12 @@ public class DemoController {
 				System.out.println(p.getPid()+"editing");
 				productService.updateProduct(p);
 			}
+			return "redirect:/aproducts";
 		} catch (BuisnessException e) {
-			e.printStackTrace();
+		model.addAttribute("error", e.getMessage());
+		return "addproduct";
 		}
-		return "redirect:/aproducts";
+		
 	}
 		
 	
