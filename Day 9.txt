@@ -1,0 +1,164 @@
+Recap:
+----------
+Spring MVC:
+-------------
+DispatcherServlet----@Controller
+
+AbstractAnnotationConfigDispatcherServletInitialzer---Configuration and servletmapping
+
+@Controller
+@RequestMapping(value="/login",method=RequestMethod.POST)
+@RequestMapping(value="/login")
+
+
+Read the values from text boxes----@RequestParam
+parameters in the path("/delete/{id}")---@PathVariable
+
+@RequestMapping("/products")
+public  ModelAndView    getProducts(){
+	ModelAndView mv=new ModelAndView();
+mv.addAttributte("listproduct",productService.getAllProducts());
+or
+mv.addObject("listproduct",productService.getAllProducts());
+mv.setViewName("products");
+return mv;
+}
+
+http://localhost:8089/SpringMVC/products
+---DispatcherServlet----@Controller---@RequestMapping("/products)
+
+
+@Bean
+public InternalResourceViewResolver getViewResolver(){
+InternalResourceViewResolver viewResolver =new InternalResourceViewResolver();
+viewResolver.setPrefix("/WEB-INF/views/");
+viewResolver.setSuffix(".jsp");
+return viewResolver;
+}
+
+
+for(i=0;i<10;i++)
+for(int i:array)
+
+products.jsp:
+---------------------
+<%@page isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core">
+
+<c:forEach items="${listproduct}" var="p">
+${p.pid}
+${p.pname}
+
+
+<a href='edit/${p.pid}'>Edit</a>
+<a href='delete/${p.pid}'>Delete</a>
+<c:forEach>
+
+@RequestMapping("/delete/{id}")
+public String getdelete(@PathVariable("id")int id){
+	productService.removeProduct(id);
+	return "redirect:/products";
+}
+--------------------------------------------------------------------------------
+<form action="add/product">
+	<label>ProductId</label>
+	<input type="text" name="pid" id="pid">
+	<br/><br/>
+	<label>ProductName</label>
+	<input type="text" name="pname" id="pname">
+	<br/><br/>
+	--
+	-
+	-
+	-
+	<input type="submit" value="AddProduct">
+	
+	
+</form>
+
+
+
+@RequestMapping("/add/product")
+public String addProduct(@RequestParam("pid")String pid,-,,,,,){
+Product p=new Product();
+p.setPid(Integer.parseInt(pid));
+--
+--
+--
+--
+productService.addProduct(product);
+return "redirect:/products";
+}
+
+
+
+---@ModelAttribute-----model class----Product
+
+@RequestMapping("/add/product")
+public String addProduct(@ModelAttribute Product product, Model model){
+model.addAttribute("product",new Product());
+if(product.getPid()==0){
+productService.addProduct(product);
+}else{
+productService.updateProduct(product);
+return "redirect:/products";
+}
+
+<%@taglib prefix="form" 
+uri="http://www.springframework.org/tags/form"%>
+
+<form:form action="add/product" commandName="product">
+	<form:label>ProductId</label>
+	<form:input type="text"  path="pid" disabled="disabled" readonly="readonly"/>
+		<form:input type="hidden" path="pid"/>
+	<br/><br/>
+	<label>ProductName</label>
+	<form:input type="text"  path="pname"/>
+	<br/><br/>
+	--
+	-
+	-
+	-
+	<form:input type="submit" value="AddProduct"/>
+	
+	
+</form>
+
+Layout: Spring Tiles
+Security: Spring Security
+-----------------------------------------------------------------------------------
+Spring MVC REST:
+-----------------------
+
+REST----
+	get---select
+	post---insert
+	put---update
+	delete--delete
+
+Api----Jersey
+	  ----Jackson
+	  
+	  
+	  @Controller--------------@RestController
+	  @RequestMapping------@RequestMapping(value="")
+	  @PathVaraible------------@PathParam
+	  @RequestParam-----------@RequestParam
+	  @ModelAttribute----------@RequestBody
+	  
+	  
+	  @RequestMapping(value="product", method=RequestMethod.GET,
+	  produces=MediaType.APPLICATION_JSON_VALUE)	  
+	  
+	  
+	  
+	  
+
+
+
+
+
+
+
+
+

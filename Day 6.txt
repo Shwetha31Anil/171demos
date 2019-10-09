@@ -1,0 +1,190 @@
+Recap:
+------------
+Spring Framework
+----------------------
+IOC---DI
+
+Spring Core/IOC--- BeanFactory--lazy, deosnot supports i18n
+								ApplicationContext---eager,supports for i18n
+						Core Containers:		
+								Implemented Classes--
+											XMLBeanFactory(Resource);
+										ClassPathXmlApplicationContext("xml");
+										FilePathXmlApplicationContext("xml");
+										AnnotationConfigApplicationContext(java class);
+										
+	DI-- CI, SI
+
+Class in spring---bean--should always have default constructor
+
+Configuration:
+	1. XML---
+			<beans  xmlns="http://www.springframework.org/schema/beans"
+			
+			default-init-method="" default-destroy-method="">
+				<bean id="" class="" lazy-init="true" scope="" init-method=""
+				destroy-method="" autowire="byName">
+					setters--
+					<property name="" value="" type=""/>---primitive data,String
+					<property name="object" ref=""/>
+					<property name="">
+					<list>
+					<set>
+					<map>
+				 parameterized constructor---Employee(eid,ename,salary,departmet)
+				 <constructor-arg  value=""/>
+				 <constructor-arg name="" value=""/>--primitive
+				 <constructor-arg ref=""/>
+				 <list>
+					<set>
+					<map>
+				</bean>
+			</beans>
+		
+
+	2. Mixed Way:
+	
+	<beans  xmlns="http://www.springframework.org/schema/beans"
+			xmlns:context="http://www.springframework.org/schema/context"
+			xmlns:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd"
+			>
+			
+			<context:annotation-config/>--we are using annotations
+			<context:component-scan basePackage="com.mphasis.training"/>
+		Spring :
+			@Component
+			@Autowired
+			@Required
+			@Lazy
+			@Scope
+			@Primary
+			@Qualifier
+			
+			JSR Annotation:
+			@PostConstruct
+			@PreDestroy
+											
+	3. Java Based :
+			@Configuration----it will inform to ioc container as configuration class
+			class AppConfig{
+			
+			@Bean
+			public Employee getEmployee(){
+			Employee e1=new Employee(12,"xyz",6757,getDepartment());
+			return e1;
+			}
+			}
+			
+			
+			@Configuration----it will inform to ioc container as configuration class
+			@ComponentScan(basePackage="")
+			class AppConfig{
+			
+			
+			}
+			}
+--------------------------------------------
+Spring DAO: 
+--------------------			
+Spring JDBC-----jdbTemplate
+Spring ORM-----Hibernate---Spring Integration with Hibernate
+Spring OXM
+Spring Transaction	
+
+
+Hibernate----
+-----------      SessionFactory
+
+Spring-----LocalSessionFactoryBean, DriverManagerDataSource
+
+@Component---- @Repository
+
+driver,user,url,password---------DataSource----
+hibernate props:---------dialect, hbm2ddl.auto,show_sql, cache
+
+url
+driverClassName
+username
+password
+	
+<bean class="DriverManagerDataSource" id="ds">
+	<property name="url" value=""/>
+	<property name="driverClassName" value=""/>
+	<property name="username" value=""/>
+	<property name="password" value=""/>
+</beans>
+
+<bean id="sessionFactory" class="hibernate4.LocalSessionFactoryBean">
+	<property name="dataSource" ref="ds"/>
+	<property name="hibernateProperties" >
+		<properties>
+			<props key="" value=""/>
+		</properties>
+		<property name="annotatedClasses">
+
+</bean>
+
+java based:
+---------------
+
+@Bean 
+public DriverManagerDataSource getDs(){
+DriverManagerDataSource ds=new DriverManagerDataSource();
+ds.setDriverClassName("");
+ds.setUrl();
+ds.setUsername();
+ds.setPasswor();
+return ds;
+}
+
+@Bean
+public LocalSessionFactoryBean getSessionFactory(){
+LocalSessionFactoryBean sessionFactory=new LocalSessionFactoryBean();
+sessionFactory.setDataSource(getDs());
+Properties props=new Properties();
+props.put("hibernate.dialect","");
+sessionFactory.setHibernateProperties(properties);
+sessionFactory.setAnnotatedClasses(Employee.class);
+sessionFactory.setAnnotatedClasses(2.class);
+sessionFactory.setAnnotatedClasses(3.class);
+sessionFactory.setAnnotatedClasses(4.class);
+sessionFactory.setAnnotatedClasses(5.class);
+sessionFactory.setPackageToScan("entities class package");
+return sessionFactory;
+}
+
+
+@Component--- @Respository
+					------@Service
+					
+@Respository					
+class EmployeeDaoImpl implements EmployeeDao{					
+					@Autowired
+					SessionFactory sessionFactory;
+}
+@Service
+class EmployeeServiceImpl implements EmployeeService{
+				@Autowired
+				EmployeeDao employeeDao;
+				}
+
+
+MUser--- userid-auto generated
+				username--unique
+				pass
+				role----admin--then can do oprations of addproduct,edit,delete
+					----customer---getproducts,getProductById
+				createdDate--default is systemdate
+				
+dao---		login
+				getUserByUserName
+				updatePassword
+				registerUser
+				
+
+	
+			
+			

@@ -1,0 +1,195 @@
+Recap:
+--------
+Spring DAO--- Spring JDBC, ORM, OXM, tx
+
+Spring Hibernate:
+--------------------
+All hibernate cfg will be taken care by --spring-orm.jar, spring-jdbc.jar
+LocalSessionFactoryBean----setHibernateProperties(props);
+													--hibernate.dialect
+													--hibernate.hbm2ddl_auto
+													--hibernate.show_sql
+													--hibernate.use_second_level_cache
+										 ----setDataSource(dataSource);
+													DriverManagerDataSource---Bean
+														--setUrl
+														--setDriverClassName
+														--setPassword
+														--setUser
+										 ----setAnnotatedClasses--load persistentclass
+										 ---setPackageToScan---to scan persistent--package
+										 
+										 
+	<bean id="ds" class="DriverManagerDataSource">
+		<property name="url" value=""/>
+	</bean>
+		<bean id="sessionFactory" class="LocalSessionFactoryBean">
+		<property name="dataSource" ref="ds"/>
+		<property name="hibernateProperties">
+		<properties>
+			<prop key="" value="">
+		</properties>
+		</property>
+		<property name="annotatedClasses">
+			<array>
+				
+			</array>
+		</property>
+	</bean>
+	
+Java Based:
+----------------
+
+@Configuration
+@ComponentScan(basePackagesClasses={"com.mphasis.training","com.mphasis.tringing"})
+class AppConfig{	
+
+@Bean
+public DriverManagerDataSource getDataSource(){}
+
+@Bean
+public LocalSessionFactoryBean getSessionFactory(){}
+}
+--------
+Dao Layer---- @Respository
+								@Autowired
+								private SessionFactory sessionFactory;
+								
+Service Layer/BO Layer----@Service
+												@Autowired
+												private EmployeeDao employeeDao;
+-----------
+Spring Container---- AnnotationConfigApplicationContext(AppConfig.class);												
+---------------------------------------------------------------------------------------------
+
+Spring AOP: Aspect Oriented Programming
+--------------
+Concerns: logging, transaction,audit logs, monitoring
+
+
+
+Aspect--@Aspect
+Advice---when ---- before, after, afterReturning, afterThrowing,around
+PointCut---for which method the advice should execute
+			----expression-----@PointCut(execution(* com.mphasis.training.daos.*.*(. .));  
+			@Before(execution(void com.mphasis.training.daos.*.*(int .)))
+			@Before(execution(int com.mphasis.training.daos.*.*(. .)))
+			@Before(execution(* com.mphasis.training.daos.*.*(. .)))
+			@Before(pointcut)
+			@After(pointcut)
+JoinPoint--interface---org.aspectj.lang.JoinPoint
+				joinPoint.getSignature().getName();
+Weaving
+
+
+@EnableAspectJAutoProxy---for the configuration we have to enable the aspect
+
+
+Presentation Layer----Logging								--Security
+Buisness Layer----Logging										--Security
+Data Access Layer---Logging---Transaction Management--Security
+DTO--------------------Logging	
+
+
+EmployeeDaoImpl
+EmployeeServiceImpl
+
+-----------------------------------------------------------------------------------
+Spring WEB :
+----------------
+	Spring Web MVC---complete web application development
+	Spring Web MVC REST----MVC app without view
+	Spring Portlets---- user to develop Portals
+--------------------------------------------------------------------------------
+Spring Web MVC----FrontController Pattern
+
+Entities---data setter/getter
+Dao--- Cook---data----hibernate  code
+Service---Buisness---b logic---java code
+Contoller---- who will take request from the people---servlets
+jsp---- view/Beautificatio/presentation----jsp
+
+MVC--- FrontController----DispatcherServlet
+
+web.xml:--
+-----------
+<servlet>
+	<servlet-name>mphasis</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>mphasis</servlet-name>
+	<url-pattern>/</url-pattern>
+</servlet-mapping>
+
+mphasis-servlet.xml
+--------------------------
+<beans>
+	<bean></bean>
+</beans>
+
+
+http://localhost:8089/projectname/login
+http://localhost:8089/projectname/signup
+http://localhost:8089/projectname/products
+
+Java Based Way:
+-------------------
+mphasis-servlet.xml------> @Configuration
+web.xml-------->Web Initializer
+							DispatcherServlet---FrontController
+							AnnotationConfigApplicationContext---SpringCoreContaier
+							
+class AppInitilzer  extends 
+								AbstractAnnotationConfigDispatcherServletInitializer
+							
+		Class<?>[]:getRootConfigClasses---AppConfig
+		Class<?>[]:getServletConfigClasses---servlet classes
+		String[]:getServletMappings---- url pattern
+		
+		Maven Dependencies:
+				spring-context
+				spring-orm
+				hibernate-core
+				hibernate-ehcache
+				aspectj---
+				spring-webmvc
+				jstl 1.2
+				
+				View Spring MVC---- jsp	, freemarker, velocity,jsf
+				
+				DispatcherServlet--- /
+				@Contoroller
+				class AdminController{
+					
+					@RequestMapping("/login")
+					public void getLogin(@RequestParam("uname")String uname,@RequestParam("pwd")String pass){
+						HttpServletRequest request;
+						request.getParameter("uname");---- @RequestParam("uname"))
+						adminService.login(uname,pass);
+					}
+					
+						@RequestMapping("/signup")
+					public void getSignup(@RequestParam("uname")String uname,@RequestParam("pwd")String pass){
+						HttpServletRequest request;
+						request.getParameter("uname");---- @RequestParam("uname"))
+						adminService.login(uname,pass);
+					}
+					}
+					
+				
+http://localhost:8089/projectname/login		
+
+
+
+
+
+
+
+
+
+
+
+
+
+

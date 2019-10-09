@@ -1,0 +1,67 @@
+Recap:
+-----------
+Spring AOP:
+---------------
+Logging
+Monitoring
+Audit Logs
+Transaction
+
+Aspect----@Aspect @Component
+Advice----@Before, @After, @Around, @AfterReturning, @AfterThrowing
+Pointcut----@Pointcut("execution(* com.mphasis.training.*.*.*.*(..))")
+JoinPoint------joinPoint.getSignature().getName(), getArgs()
+Weaving--process of aspecting
+
+Spring MVC:
+---------------------
+			FrontController Design Pattern:
+					FrontController---DispatcherServlet--org.springframework.web.servlet
+
+Xml:
+	web.xml:  webapp/WEB-INF/
+	--------------
+		<servlet>
+			<servlet-name>mphasis</servlet-name>
+			<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		</servlet>
+<servlet-mapping>
+		<servlet-name>mphasis</servlet-name>
+		<url-pattern>/</url-pattern>
+</servlet-mapping>		
+	
+mphasis-servlet.xml---spring beans configuration	
+
+Java Based Configuration:
+-----------------------
+										@Configuration
+										@ComponentScan(basePackage="com.mphasis.training")
+mphasis-servlet.xml--- class AppConfig
+
+web.xml---
+	class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer
+
+public Class<?>[] getRootConfigClasses(){
+return new Class[]{ AppConfig.class};
+}
+
+public Class<?>[] getServletConfigClasses(){
+return null;
+}
+
+public String[] getServletMapping(){
+return new String[]{"/"};
+}
+
+@Controller---request ---will always look for the view
+Circular view path [login]: would dispatch back to 
+the current handler URL [/SpringWebMVC/login]
+
+
+
+InternalResourceViewResolver---bean--with spring MVC
+	setPrefix----views/
+	setSuffix----  .jsf
+	
+	
+	view ----welcome
