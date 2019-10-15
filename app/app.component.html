@@ -1,0 +1,42 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>  
+</div>
+<div style="padding:15px">
+
+  <ul class="nav nav-tabs">
+    <li  class="nav-item"><a class="nav-link" routerLink='home'>Home</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <li class="nav-item"><a class="nav-link" routerLink="employees">Employees</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="addEmployee">AddEmployee</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink="departments">Departments</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="addDepartment">AddDepartment</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="locations">Locations</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="addLocation">AddLocation</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="jobs">Job</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="addJob">AddJob</a></li>
+  </ul>
+
+  <br/><br/>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <div class="container">
+      <a class="navbar-brand">Angular Router</a>
+      <ul class="nav navbar-nav" routerLinkActive="active">
+          <li class="nav-item"><a class="nav-link" routerLink="employees">Employees</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="addEmployee">AddEmployee</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="departments">Departments</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="addDepartment">AddDepartment</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="locations">Lcoations</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="addLocation">AddLocation</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="jobs">Job</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="addJob">AddJob</a></li>
+      </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet> -->
+

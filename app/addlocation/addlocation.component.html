@@ -1,0 +1,25 @@
+<form (ngSubmit)="addLocation()" class="form-inline">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Create Location</h3>
+        </div>
+<div class="panel-body">
+  <div class="form-group">
+    <label>Location Code</label>
+    <input type="text" class="form-control" name="lid" [(ngModel)]="location.lid">
+  </div>
+ 
+  <br/>
+  <div class="form-group">
+    <label>Location Name</label>
+    <input type="text" class="form-control" name="lname" [(ngModel)]="location.lname">
+  </div>
+  <br/>
+  
+  
+  </div>
+  <div class="panel-footer">
+      <button class="btn btn-primary" type="submit">Add Location</button>
+    </div>
+    </div>
+</form>

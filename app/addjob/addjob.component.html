@@ -1,0 +1,25 @@
+<form (ngSubmit)="addJob()" class="form-inline">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Create Job</h3>
+        </div>
+<div class="panel-body">
+  <div class="form-group">
+    <label>Job Code</label>
+    <input type="text" class="form-control" name="lid" [(ngModel)]="job.jcode">
+  </div>
+ 
+  <br/>
+  <div class="form-group">
+    <label>Job Name</label>
+    <input type="text" class="form-control" name="lname" [(ngModel)]="job.jname">
+  </div>
+  <br/>
+  
+  
+  </div>
+  <div class="panel-footer">
+      <button class="btn btn-primary" type="submit">Add Job</button>
+    </div>
+    </div>
+</form>

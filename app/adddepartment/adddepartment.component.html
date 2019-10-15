@@ -1,0 +1,38 @@
+<form (ngSubmit)="addDepartment()" class="form-inline">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Create Department</h3>
+        </div>
+<div class="panel-body">
+  <div class="form-group">
+    <label>Department Code</label>
+    <input type="text" class="form-control" name="did" [(ngModel)]="department.did">
+  </div>
+ 
+  <br/>
+  <div class="form-group">
+    <label>Department  Name</label>
+    <input type="text" class="form-control" name="dname" [(ngModel)]="department.dname">
+  </div>
+<br/>
+
+  <div class="form-group">
+<label for="Location" class="control-label">Location</label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<select id="location" required #location="ngModel"
+							 name="location" [(ngModel)]="lid"
+							 class="form-control">
+       <option value="-1">Select Location</option> 
+ <option *ngFor='let loc of locations' [value]="loc.lid">
+   {{loc.lname}}
+ </option>
+</select>
+  </div>
+  
+  
+  </div>
+  <div class="panel-footer">
+      <button class="btn btn-primary" type="submit">Add Department</button>
+    </div>
+    </div>
+</form>

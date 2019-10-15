@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <td>Employee Id</td>
+    <td>Employee Name</td>
+    <td>Salary</td>
+    <td>Date Of Joining</td>
+    <td>Bonus</td>
+    <td>Department</td>
+    <td>Job</td>
+    <td colspan="2">Action</td>
+  </tr>
+  <tr *ngFor="let emp of employees">
+    <td>{{emp.eid}}</td>
+    <td>{{emp.ename}}</td>
+    <td>{{emp.salary}}</td>
+    <td>{{emp.doj | date: 'fullDate'}}</td>
+    <td>{{emp.bonus}}</td>
+    <td>{{emp.dept.dname}}</td>
+    <td>{{emp.job.jname}}</td>
+    <td><a [routerLink]="['/editEmployee',emp.eid]" class="btn btn-primary">
+     Edit
+  </a></td>
+     <td> <button class="btn btn-danger">Delete</button></td>
+  </tr>
+</table>
