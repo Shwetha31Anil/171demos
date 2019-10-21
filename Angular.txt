@@ -1,0 +1,65 @@
+child Routing:
+================================================
+const appRoutes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent,
+  children: [
+  { path: 'flight', component: GetAllComponent},
+  { path: 'addflight', component: AddFlightComponent },
+  {path: 'editflight/:fid',component:AddFlightComponent},
+  {path: 'getflightbyid/:id', component: GetFlightByIdComponent},
+  {path: 'remove/:id', component: RemoveFlightComponent},
+]},
+{ path: '', redirectTo: '/login' , pathMatch: 'full'},
+{path: '**', component: PagenotfoundComponent}
+];
+
+----------------------------------------------------------------------
+app.component.html
+------------------------------------
+<div>
+<app-header></app-header>
+
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>
+</div>
+-------------------------------------------
+Service:
+---------------------------------
+login(email: string, password: string):Observable<User>{
+  console.log('service called');  
+  const url1= 'http://localhost:8089/StormReaper/user/userlogin';
+
+ const lurl=`${url1}/${email}/${password}`;
+  return this._http.get<User>(lurl)
+  .pipe(tap(user => {
+    localStorage.setItem('currentPassenger',JSON.stringify(user));
+    this.currentUserSubject.next(user);
+  return user;}),
+  catchError(this.handleError<User>(`getProduct id=${email}`))
+);
+
+} 
+
+
+private handleError<T> (operation = 'operation', result?: T) {
+  return (error: any): Observable<T> => {
+
+    // TODO: send the error to remote logging infrastructure
+    console.error(error); // log to console instead
+
+    // Let the app keep running by returning an empty result.
+    return of(result as T);
+  };
+}
+
+
+logout(){
+  localStorage.removeItem('currentUser');
+  this.currentUserSubject.next(null);
+  this.currentPassenger.next(null);
+  this.currentTicket.next(null);
+}
+
+------------------------------------------------------
